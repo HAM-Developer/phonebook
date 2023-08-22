@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
-const { PersonModel, connectDB } = require('./models/person')
+const PersonModel = require('./models/person')
 // const connectDB = require('./models/person')
 const path = require('path')
 const app = express()
@@ -78,9 +78,9 @@ const errorHandler = (error, request, response, next) => {
 }
 app.use(errorHandler)
 const PORT = 3001
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log(`Server running on port ${PORT}`)
-    })
+// connectDB().then(() => {
+app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`)
 })
+// })
 
