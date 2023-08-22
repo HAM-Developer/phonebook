@@ -4,14 +4,22 @@ const mongoose = require('mongoose')
 
 const url = process.env.MONGODB_URI
 mongoose.set('strictQuery', false)
-
-mongoose.connect(url)
-    .then(() => {
-        console.log('connected to MongoDB')
-    })
-    .catch((error) => {
-        console.log('error connecting to MongoDB:', error.message)
-    })
+const connectDB = async () => {
+    try {
+        const conn = await mongoose.connect(url)
+        console.log(`MongoDB Connected: ${conn.connection.host}`)
+    } catch (error) {
+        console.log(error)
+        process.exit(1)
+    }
+}
+// mongoose.connect(url)
+//     .then(() => {
+//         console.log('connected to MongoDB')
+//     })
+//     .catch((error) => {
+//         console.log('error connecting to MongoDB:', error.message)
+//     })
 
 const personSchema = new mongoose.Schema({
     phoneName: {
@@ -39,3 +47,4 @@ personSchema.set('toJSON', {
 })
 
 module.exports = mongoose.model('Person', personSchema)
+module.exports = connectDB
