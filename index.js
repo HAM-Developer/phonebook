@@ -1,8 +1,8 @@
 const express = require('express')
 const cors = require('cors')
 const morgan = require('morgan')
-const PersonModel = require('./models/person')
-const connectDB = require('./models/person')
+const { PersonModel, connectDB } = require('./models/person')
+// const connectDB = require('./models/person')
 const path = require('path')
 const app = express()
 morgan.token('data', (req) => {
